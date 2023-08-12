@@ -1,0 +1,68 @@
+.modal {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  width: 600px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background-color: orangered;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -100px;
+
+  &-title {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  &-desc {
+    margin-top: 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .button-sec {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    button {
+      width: 200px;
+      background-color: rgba(0, 0, 0, 0.419);
+      color: white;
+      font-size: 16px;
+      border: none;
+      padding: 12px 24px;
+      cursor: pointer;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.638);
+      }
+    }
+  }
+
+  .close-btn {
+    background-color: rgba(0, 0, 0, 0.607);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+}

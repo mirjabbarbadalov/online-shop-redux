@@ -1,0 +1,17 @@
+@import "./sass/Modal.scss";
+@import "./sass/Navbar.scss";
+@import "./sass/ProductList.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.home-page {
+  padding: 20px 40px;
+  background-color: rgba(248, 234, 172, 0.222);
+}
