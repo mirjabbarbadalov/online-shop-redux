@@ -1,44 +1,67 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../store/actions/modalActions";
-import { addToCart, removeFromCart } from "../store/actions/cartActions";
+import { addToCart, deleteFromCart } from "../store/actions/cartActions";
 
-export default function ModalWindow({ productInfo, isDeleting }) {
+export default function ModalWindow({ isCartPage }) {
   const dispatch = useDispatch();
 
-  const handleAction = () => {
-    if (isDeleting) {
-      dispatch(removeFromCart(productInfo.id));
-    } else {
-      dispatch(addToCart(productInfo));
-    }
+  const title = isCartPage ? "Remove from Cart" : "Add to Cart";
+  const description = isCartPage
+    ? "Do you want to remove this product from your cart?"
+    : "Do you want to add this product to your cart?";
+
+  const selectedProduct = useSelector(
+    (state) => state.selectedCart.selectedProduct
+  );
+
+  const closeModalWindow = () => {
     dispatch(closeModal());
   };
 
-  const handleCloseModal = () => {
+  const addToCartFunction = () => {
+    dispatch(addToCart(selectedProduct));
+    dispatch(closeModal());
+  };
+
+  const removeFromCartFunction = () => {
+    dispatch(deleteFromCart(selectedProduct.id));
     dispatch(closeModal());
   };
 
   return (
     <div className="modal">
       <header>
-        <h1 className="modal-title">
-          {isDeleting
-            ? "Are you sure you want to delete this product?"
-            : "Do you want to add this product to the cart?"}
-        </h1>
-        <button className="close-btn" onClick={handleCloseModal}>
+        <h1 className="modal-title">{title}</h1>
+        <button
+          className="close-btn"
+          onClick={() => {
+            closeModalWindow();
+          }}
+        >
           X
         </button>
       </header>
-      <p className="modal-desc">
-        {isDeleting
-          ? "This action cannot be undone."
-          : "Are you sure you want to add it?"}
-      </p>
+      <p className="modal-desc">{description}</p>
       <div className="button-sec">
-        <button onClick={handleAction}>{isDeleting ? "Delete" : "Ok"}</button>
-        <button onClick={handleCloseModal}>Cancel</button>
+        {isCartPage ? (
+          <button
+            onClick={() => {
+              removeFromCartFunction();
+            }}
+          >
+            Remove
+          </button>
+        ) : (
+          <button onClick={addToCartFunction}>Add</button>
+        )}
+        <button
+          onClick={() => {
+            closeModalWindow();
+          }}
+        >
+          Cancel
+        </button>
       </div>
     </div>
   );

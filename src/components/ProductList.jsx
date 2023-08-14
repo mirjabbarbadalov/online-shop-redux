@@ -5,10 +5,10 @@ import ModalWindow from "./ModalWindow";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function ProductList({ productsArray }) {
+export default function ProductList({ productsArray, isCartPage }) {
   const favorites = useSelector((state) => state.favorites.favorites);
   const cart = useSelector((state) => state.cart.cartItems);
-
+  // console.log(cart);
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
@@ -20,7 +20,11 @@ export default function ProductList({ productsArray }) {
   return (
     <div className="product-list">
       {productsArray.map((product) => (
-        <Product key={product.id} productInfo={product} />
+        <Product
+          key={product.id}
+          productInfo={product}
+          isCartPage={isCartPage}
+        />
       ))}
     </div>
   );

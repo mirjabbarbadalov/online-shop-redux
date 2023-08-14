@@ -4,7 +4,6 @@ import ProductList from "../components/ProductList";
 
 export default function FavoritesPage() {
   const storedFavorites = useSelector((state) => state.favorites.favorites);
-  console.log(storedFavorites);
 
   return (
     <div className="home-page">

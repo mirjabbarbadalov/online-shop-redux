@@ -7,23 +7,15 @@ import {
   removeFromFavorites,
 } from "../store/actions/favoritesActions";
 import { openModal } from "../store/actions/modalActions";
+import { setSelectedCart } from "../store/actions/selectedCartAction";
 import ModalWindow from "./ModalWindow";
-import { addToCart, removeFromCart } from "../store/actions/cartActions";
 
-export default function Product({ productInfo }) {
+export default function Product({ productInfo, isCartPage }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.favorites);
   const cart = useSelector((state) => state.cart.cartItems);
   const isFavorite = favorites.some((item) => item.id === productInfo.id);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
-
-  const handleCartIconClick = () => {
-    const action = cart.some((item) => item.id === productInfo.id)
-      ? handleDeleteFromCart
-      : handleAddToCart;
-
-    dispatch(openModal(productInfo, action));
-  };
 
   const handleFavorites = () => {
     if (isFavorite) {
@@ -33,12 +25,9 @@ export default function Product({ productInfo }) {
     }
   };
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(productInfo));
-  };
-
-  const handleDeleteFromCart = () => {
-    dispatch(removeFromCart(productInfo.id));
+  const openModalWindow = () => {
+    dispatch(openModal());
+    dispatch(setSelectedCart(productInfo));
   };
 
   return (
@@ -63,25 +52,20 @@ export default function Product({ productInfo }) {
           )}
         </div>
         <div>
-          {cart.some((item) => item.id === productInfo.id) ? (
+          {isCartPage ? (
             <AiFillCloseCircle
               className="product-icon"
-              onClick={handleCartIconClick}
+              onClick={openModalWindow}
             />
           ) : (
             <FaShoppingCart
               className="product-icon"
-              onClick={handleCartIconClick}
+              onClick={openModalWindow}
             />
           )}
         </div>
       </div>
-      {isModalOpen && (
-        <ModalWindow
-          productInfo={productInfo}
-          isDeleting={cart.some((item) => item.id === productInfo.id)}
-        />
-      )}
+      {isModalOpen && <ModalWindow isCartPage={isCartPage} />}
     </div>
   );
 }
