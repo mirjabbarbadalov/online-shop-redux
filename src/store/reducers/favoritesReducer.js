@@ -1,5 +1,6 @@
 const initialState = {
-  favorites: [],
+  favorites: JSON.parse(localStorage.getItem("favorites")),
+  //I changed this part, and I think it works properly.
 };
 
 const favoritesReducer = (state = initialState, action) => {

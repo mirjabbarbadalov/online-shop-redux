@@ -1,5 +1,6 @@
 const initialState = {
-  cartItems: [],
+  cartItems: JSON.parse(localStorage.getItem("cart")),
+  //I changed this part, and I think it works properly.
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -14,6 +15,11 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter((item) => item.id !== action.payload),
+      };
+
+    case "SEND_CARTS_TO_STORAGE":
+      return {
+        cartItems: action.payload,
       };
 
     default:

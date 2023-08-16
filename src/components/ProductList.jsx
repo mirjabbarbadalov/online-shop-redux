@@ -1,9 +1,9 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import Product from "./Product";
 import ModalWindow from "./ModalWindow";
 import { useState } from "react";
 import { useEffect } from "react";
+import { sendCartsToStorage } from "../store/actions/cartActions";
 
 export default function ProductList({ productsArray, isCartPage }) {
   const favorites = useSelector((state) => state.favorites.favorites);

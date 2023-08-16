@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { AiOutlineStar, AiFillStar, AiFillCloseCircle } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
