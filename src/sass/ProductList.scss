@@ -35,7 +35,7 @@
     width: 100%;
     margin-top: 10px;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-around;
   }
 
@@ -49,4 +49,19 @@
       transform: scale(1.1);
     }
   }
+}
+
+.home-page {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.no-found-message {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 36px;
+
+  align-self: center;
+  font-weight: bold;
+  color: orangered;
 }

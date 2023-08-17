@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const favoritesNum = useSelector((state) => state.favorites.favorites.length);
   // console.log(favoritesNum);
-  const cartNum = useSelector((state) => state.cart.cartItems.length);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   return (
     <div className="navbar">
       <Link to="/">
@@ -26,7 +27,9 @@ export default function Navbar() {
           <Link to="/cart">
             <FaCartShopping className="nav-icon" />
           </Link>
-          {cartNum > 0 && <div className="product-num">{cartNum}</div>}
+          {cartItems && cartItems.length > 0 && (
+            <div className="product-num">{cartItems.length}</div>
+          )}
         </div>
       </div>
     </div>

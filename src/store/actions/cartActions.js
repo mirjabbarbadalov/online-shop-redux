@@ -24,3 +24,9 @@ export const deleteFromCart = (selectedProductId) => {
     payload: selectedProductId,
   };
 };
+
+export const clearLocalStorage = () => {
+  return {
+    type: "CLEAR_LOCAL_STORAGE",
+  };
+};

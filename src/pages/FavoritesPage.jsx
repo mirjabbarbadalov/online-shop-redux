@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import ProductList from "../components/ProductList";
 
@@ -7,7 +6,9 @@ export default function FavoritesPage() {
 
   return (
     <div className="home-page">
-      {storedFavorites.length === 0 && <p>No favorites found</p>}
+      {storedFavorites.length === 0 && (
+        <p className="no-found-message">No favorites found</p>
+      )}
       {storedFavorites && <ProductList productsArray={storedFavorites} />}
     </div>
   );

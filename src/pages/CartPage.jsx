@@ -1,6 +1,6 @@
 import ProductList from "../components/ProductList";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import Form from "../components/Form";
 
 export default function FavoritesPage() {
   const storedProducts = useSelector((state) => state.cart.cartItems);
@@ -8,10 +8,17 @@ export default function FavoritesPage() {
 
   return (
     <div className="home-page">
-      {storedProducts.length === 0 && <p>No products found</p>}
-      {storedProducts && (
-        <ProductList productsArray={storedProducts} isCartPage={true} />
-      )}
+      <div>
+        {storedProducts.length === 0 && (
+          <p className="no-found-message">No products found</p>
+        )}
+        {storedProducts && (
+          <ProductList productsArray={storedProducts} isCartPage={true} />
+        )}
+      </div>
+      <div>
+        {storedProducts && <div>{storedProducts.length > 0 && <Form />}</div>}
+      </div>
     </div>
   );
 }
