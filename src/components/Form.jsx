@@ -42,7 +42,7 @@ export default function Form() {
 
     onSubmit: () => {
       console.log(`You bought and you paid ${Math.round(totalPrice)}$`);
-      productsInCart.map((item) => console.log(item));
+      productsInCart.map((item) => console.log(item.Name, item.Price));
       dispatch(clearLocalStorage());
     },
   });
