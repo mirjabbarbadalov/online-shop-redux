@@ -7,7 +7,7 @@ export default function FavoritesPage() {
   return (
     <div className="home-page">
       {storedFavorites.length === 0 && (
-        <p className="no-found-message">No favorites found</p>
+        <p className="no-found-message">No favorites found!</p>
       )}
       {storedFavorites && <ProductList productsArray={storedFavorites} />}
     </div>
