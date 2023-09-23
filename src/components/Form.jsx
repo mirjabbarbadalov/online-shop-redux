@@ -15,7 +15,7 @@ export default function Form() {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
+      firstName: " ",
       lastName: "",
       age: "",
       adress: "",
